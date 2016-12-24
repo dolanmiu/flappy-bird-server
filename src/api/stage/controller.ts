@@ -45,6 +45,5 @@ export class StageController {
         }
 
         res.status(200).json(stage.slice(startIndexNumber, endIndexNumber + 1));
-        console.log(stage);
     }
 }
