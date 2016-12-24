@@ -1,5 +1,14 @@
 {
     "extends": [
         "tslint:recommended"
-    ]
+    ],
+    "rules": {
+        "typedef": [
+            "call-signature"
+        ],
+        "forin": true,
+        "array-type": [
+            "generic"
+        ]
+    }
 }
