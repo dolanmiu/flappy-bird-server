@@ -2,8 +2,13 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-- node 
+- node
 before_script:
-    - npm install
+- npm install
 script:
-    - npm test
+- npm test
+deploy:
+  app: flappy-bird-server
+  provider: heroku
+  api_key:
+    secure: MCENmqWhfHb4dYmBlxzI1Wl2wZb5a9rDznRa5sWIfJhqPga09rAY4ncNAlSGR57HYqeEBamwcTtRPgXUL6pzX4uA3741qHR2IryLHQxb6HWrKjcl9+Zg2T1i4iWuZjB85ARQZ+X16gHbFCSBpfCL5aJS4fDjnZyE62IsZxqzAQ2Uj7azRPMT5pbXa5PkazBq8ek4DxvU8V6g1FGIm1MMt+W2qDjLvwWpA7ZwhGAOzhAkYjVkWvcj6zvDL169JquIJSwijdKbet+0vGSDqWO3wwN674TIett8vhVsoQzrmDuc+nA3YJsYqS3itvbLelAduFXtaJ7nUfK9agbtnTelYGXHnEzR/pXuxePtGUtHvl9iDwhZUS+zV7efhTsDEV4KOnzkAXcpmTKCOpVkERDpI7g+JmFggomylbMSPBagh137xPVYjIdjgE5OXAJtnjXTOXzGYqzBIeAo0jGQQLYbWSoKcUTumvavEWBDMB6i3DXW45eY7YpDFPWySk7L4C50ho0ALQJSQKD+UenIfgxXNzzAL338R+mXhSdnEx9Ewl8iWRfzu22sI+StqvnHUrePFDPNmYfq+fj03+6qjhIuUhaOO3+Ov+sPGgnQYB0g1FAbD4K/knm4bnOw9s4tv2vTKj19MhO3C8jQugl+yOSP8EMLJ7YiVq2avXRYDaK+cLQ=
