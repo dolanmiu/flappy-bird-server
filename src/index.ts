@@ -1,4 +1,4 @@
-// import * as cors from "cors";
+import * as cors from "cors";
 import * as logger from "winston";
 import * as stageRouter from "./api/stage";
 import { ApplicationWrapper } from "./bootstrap/application-wrapper";
@@ -9,7 +9,7 @@ let config: IConfig = new ProductionConfig();
 let appWrapper = new ApplicationWrapper(config);
 
 appWrapper.configure((app) => {
-    // app.use(cors());
+    app.use(cors());
     logger.info("Configuring application routes");
     app.use("/stage", stageRouter.router);
 });
