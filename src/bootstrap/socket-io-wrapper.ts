@@ -27,6 +27,9 @@ export class SocketIOManager {
 
             socket.on("disconnect", (data: string) => {
                 logger.info(`User ${socket.id} disconnected. Destroying all services assigned to this user`);
+                socket.broadcast.emit("disconnected", {
+                    id: socket.id,
+                });
             });
 
             socket.on("jump", () => {
@@ -43,8 +46,9 @@ export class SocketIOManager {
                 });
             });
 
-            socket.on("position", (position: { x: number, y: number }) => {
+            socket.on("position", (position: { x: number, y: number, angle: number }) => {
                 socket.broadcast.emit("position", {
+                    angle: position.angle,
                     id: socket.id,
                     x: position.x,
                     y: position.y,
