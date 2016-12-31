@@ -23,14 +23,24 @@ export class SocketIOManager {
                 name: socket.handshake.query.name,
             });
 
-            logger.info(`User ${socket.client.id} connected. With name: ${socket.handshake.query.name}`);
+            logger.info(`User ${socket.id} connected. With name: ${socket.handshake.query.name}`);
 
             socket.on("disconnect", (data: string) => {
-                logger.info(`User ${socket.client.id} disconnected. Destroying all services assigned to this user`);
+                logger.info(`User ${socket.id} disconnected. Destroying all services assigned to this user`);
             });
 
             socket.on("jump", () => {
-                logger.debug(`User ${socket.client.id} jumped.`);
+                logger.debug(`User ${socket.id} jumped.`);
+                socket.broadcast.emit("jump", {
+                    id: socket.id,
+                });
+            });
+
+            socket.on("death", () => {
+                logger.debug(`User ${socket.id} died.`);
+                socket.broadcast.emit("death", {
+                    id: socket.id,
+                });
             });
 
             socket.on("position", (position: { x: number, y: number }) => {
