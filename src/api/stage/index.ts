@@ -1,8 +1,12 @@
 import { Router } from "express";
 import { StageController } from "./controller";
 
-let router = Router();
+export class StageRouter {
+    public router: Router;
 
-router.get("/", StageController.getStage);
+    constructor() {
+        this.router = Router();
 
-export { router };
+        this.router.get("/", StageController.getStage);
+    }
+}
