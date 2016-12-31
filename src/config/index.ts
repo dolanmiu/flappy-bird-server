@@ -3,5 +3,5 @@ export interface IConfig {
 }
 
 export class ProductionConfig implements IConfig {
-    public port: number = 9001;
+    public port: number = process.env.PORT || 9001;
 }
