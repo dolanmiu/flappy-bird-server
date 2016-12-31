@@ -9,7 +9,13 @@ export class PlayerRouter {
         this.router = Router();
 
         this.router.get("/", (req: Request, res: Response) => {
-            res.status(200).send(socketIOManager.currentPlayers);
+            res.status(200).json(socketIOManager.currentPlayers);
+        });
+
+        this.router.get("/stats", (req: Request, res: Response) => {
+            res.status(200).json({
+                count: socketIOManager.currentPlayers.length,
+            });
         });
     }
 }
