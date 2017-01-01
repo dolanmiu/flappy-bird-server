@@ -16,7 +16,7 @@ export class SocketIOManager {
 
     public start(): void {
         this.io.on("connection", (socket) => {
-            socket.handshake.query.name = socket.handshake.query.name ? socket.handshake.query.name : "Un-named";
+            socket.handshake.query.name = socket.handshake.query.name ? socket.handshake.query.name.substring(0, 30) : "Un-named";
 
             socket.broadcast.emit("new-player", {
                 id: socket.id,
@@ -50,6 +50,7 @@ export class SocketIOManager {
                 socket.broadcast.emit("position", {
                     angle: position.angle,
                     id: socket.id,
+                    name: socket.handshake.query.name,
                     x: position.x,
                     y: position.y,
                 });
