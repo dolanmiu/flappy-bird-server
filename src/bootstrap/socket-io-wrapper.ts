@@ -50,7 +50,6 @@ export class SocketIOManager {
                 socket.broadcast.emit("position", {
                     angle: position.angle,
                     id: socket.id,
-                    name: socket.handshake.query.name,
                     x: position.x,
                     y: position.y,
                 });
