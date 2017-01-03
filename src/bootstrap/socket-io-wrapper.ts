@@ -1,5 +1,4 @@
 import * as http from "http";
-import * as sanitizeHtml from "sanitize-html";
 import * as socketIo from "socket.io";
 import * as logger from "winston";
 
@@ -60,7 +59,7 @@ export class SocketIOManager {
             socket.on("chat-message", (message: string) => {
                 logger.debug(`User ${socket.id} sent message. ${message}`);
                 this.io.emit("chat-message", {
-                    message: sanitizeHtml(message),
+                    message,
                     name: socket.handshake.query.name,
                 });
             });
