@@ -17,21 +17,23 @@ export class SocketIOManager {
 
     public start(): void {
         this.io.on("connection", (socket) => {
-            logger.info(`User ${socket.id} connected.`);
+            logger.info(`User ${socket.id} connected. With name: ${socket.handshake.query.name}`);
+
             socket.handshake.query.name = socket.handshake.query.name ? socket.handshake.query.name.substring(0, 30) : "Un-named";
+
+            this.sendChatMessage(`User ${socket.handshake.query.name} connected.`, "Announcement");
 
             socket.broadcast.emit("new-player", {
                 id: socket.id,
                 name: socket.handshake.query.name,
             });
 
-            logger.info(`User ${socket.id} connected. With name: ${socket.handshake.query.name}`);
-
             socket.on("disconnect", (data: string) => {
                 logger.info(`User ${socket.id} disconnected.`);
                 socket.broadcast.emit("disconnected", {
                     id: socket.id,
                 });
+                this.sendChatMessage(`User ${socket.handshake.query.name} disconnected.`, "Announcement");
             });
 
             socket.on("jump", () => {
@@ -59,10 +61,7 @@ export class SocketIOManager {
 
             socket.on("chat-message", (message: string) => {
                 logger.debug(`User ${socket.id} sent message. ${message}`);
-                this.io.emit("chat-message", {
-                    message: escape(message),
-                    name: socket.handshake.query.name,
-                });
+                this.sendChatMessage(message, socket.handshake.query.name);
             });
         });
     }
@@ -81,5 +80,12 @@ export class SocketIOManager {
         }
 
         return players;
+    }
+
+    private sendChatMessage(message: string, name: string): void {
+        this.io.emit("chat-message", {
+            message: escape(message),
+            name,
+        });
     }
 }
