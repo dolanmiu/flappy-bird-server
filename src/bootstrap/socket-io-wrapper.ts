@@ -16,6 +16,7 @@ export class SocketIOManager {
 
     public start(): void {
         this.io.on("connection", (socket) => {
+            logger.info(`User ${socket.id} connected.`);
             socket.handshake.query.name = socket.handshake.query.name ? socket.handshake.query.name.substring(0, 30) : "Un-named";
 
             socket.broadcast.emit("new-player", {
@@ -26,7 +27,7 @@ export class SocketIOManager {
             logger.info(`User ${socket.id} connected. With name: ${socket.handshake.query.name}`);
 
             socket.on("disconnect", (data: string) => {
-                logger.info(`User ${socket.id} disconnected. Destroying all services assigned to this user`);
+                logger.info(`User ${socket.id} disconnected.`);
                 socket.broadcast.emit("disconnected", {
                     id: socket.id,
                 });
@@ -52,6 +53,14 @@ export class SocketIOManager {
                     id: socket.id,
                     x: position.x,
                     y: position.y,
+                });
+            });
+
+            socket.on("chat-message", (message: string) => {
+                logger.debug(`User ${socket.id} sent message. ${message}`);
+                this.io.emit("chat-message", {
+                    message,
+                    name: socket.handshake.query.name,
                 });
             });
         });
