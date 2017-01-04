@@ -85,7 +85,7 @@ export class SocketIOManager {
     private sendChatMessage(message: string, name: string): void {
         this.io.emit("chat-message", {
             message: escape(message),
-            name,
+            name: escape(name),
         });
     }
 }
