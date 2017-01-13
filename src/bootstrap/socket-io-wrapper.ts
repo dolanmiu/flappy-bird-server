@@ -6,6 +6,7 @@ import * as logger from "winston";
 interface IPlayer {
     id: string;
     name: string;
+    color: number;
 }
 
 export class SocketIOManager {
@@ -24,6 +25,7 @@ export class SocketIOManager {
             this.sendChatMessage(`User ${socket.handshake.query.name} connected.`, "Announcement");
 
             socket.broadcast.emit("new-player", {
+                color: socket.handshake.query.color,
                 id: socket.id,
                 name: socket.handshake.query.name,
             });
@@ -74,6 +76,7 @@ export class SocketIOManager {
             let socket = sockets[socketId];
 
             players.push({
+                color: socket.handshake.query.color,
                 id: socket.id,
                 name: socket.handshake.query.name,
             });
