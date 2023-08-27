@@ -1,8 +1,6 @@
 <img src="https://github.com/dolanmiu/flappy-bird-client/raw/master/assets/form/flappy-bird-logo.png">
 
 <p align="center">
-    <a href="https://david-dm.org/dolanmiu/flappy-bird-server" title="dependencies status"><img src="https://david-dm.org/dolanmiu/flappy-bird-server/status.svg"/></a>
-    <a href="https://david-dm.org/dolanmiu/flappy-bird-server?type=dev" title="devDependencies status"><img src="https://david-dm.org/dolanmiu/flappy-bird-server/dev-status.svg"/></a>
 	<a href="http://choosealicense.com/licenses/mit"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
 	<a href="https://travis-ci.org/dolanmiu/flappy-bird-server"><img src="https://travis-ci.org/dolanmiu/flappy-bird-server.svg" alt="Travis"></a>
     <a href="https://snyk.io/test/github/dolanmiu/flappy-bird-server"><img src="https://snyk.io/test/github/dolanmiu/flappy-bird-server/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/dolanmiu/flappy-bird-server" style="max-width:100%;"></a>
