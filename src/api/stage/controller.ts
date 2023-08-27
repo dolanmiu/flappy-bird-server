@@ -17,10 +17,9 @@ function generateStage(count: number): void {
 }
 
 export class StageController {
-
     public static getStage(req: Request, res: Response): void {
-        let startIndex = req.query.start;
-        let endIndex = req.query.end;
+        let startIndex = req.query.start as unknown as string & number;
+        let endIndex = req.query.end as unknown as string & number;
 
         if (startIndex === undefined || endIndex === undefined) {
             res.status(400).send("Start and End must not be empty");

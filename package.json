@@ -33,7 +33,7 @@
     "morgan": "^1.7.0",
     "rimraf": "^2.5.4",
     "socket.io": "^1.7.2",
-    "typescript": "^2.1.4",
+    "typescript": "^5.2.2",
     "winston": "^2.3.0"
   },
   "devDependencies": {
