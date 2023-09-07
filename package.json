@@ -20,6 +20,7 @@
   ],
   "author": "Dolan Miu",
   "license": "MIT",
+  "engines": { "node": ">=16.x" },
   "bugs": {
     "url": "https://github.com/dolanmiu/flappy-bird-server/issues"
   },
